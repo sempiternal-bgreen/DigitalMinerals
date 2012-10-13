@@ -32,8 +32,8 @@
             this.graphicsPanel1 = new Sapphire.GraphicsPanel(this.components);
             this.SapphireMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel2 = new Sapphire.GraphicsPanel(this.components);
             this.SapphireMenu.SuspendLayout();
             this.SuspendLayout();
@@ -66,21 +66,21 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
             // graphicsPanel2
             // 
-            this.graphicsPanel2.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.graphicsPanel2.BackColor = System.Drawing.Color.SeaGreen;
             this.graphicsPanel2.Location = new System.Drawing.Point(0, 531);
             this.graphicsPanel2.Name = "graphicsPanel2";
             this.graphicsPanel2.Size = new System.Drawing.Size(1015, 24);
