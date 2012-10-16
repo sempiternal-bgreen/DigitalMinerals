@@ -15,5 +15,20 @@ namespace Sapphire
         {
             InitializeComponent();
         }
+
+        private void SapphireFileExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void PostProcessCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Program._TogglePostProcess(PostProcessCheckBox.Checked);
+        }
+
+        private void PostProcessComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Program._SetPostProcessEffect(PostProcessComboBox.SelectedIndex);
+        }
     }
 }

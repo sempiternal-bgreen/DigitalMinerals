@@ -10,16 +10,19 @@
 class Shape
 {
 public:
-	ID3DXMesh	*sphereMesh;
-	D3DXMATRIX	sphereMatrix;
-	ID3DXEffect	*meshEffect;
+		IDirect3DVertexBuffer9		*cubebuff;
+	IDirect3DIndexBuffer9		*cubeindex;
+	IDirect3DVertexDeclaration9	*cubedecl;
+	ID3DXEffect					*textureEffect;
+	IDirect3DTexture9			*metalTexture;
+	D3DXMATRIX					cube;
 
 	void InitializeShape( IDirect3DDevice9* d3d9 );
 	void UpdateShape( float time );
-	void RenderShape( D3DXMATRIX camera, D3DXMATRIX projection );
+	void RenderShape( IDirect3DDevice9* device, D3DXMATRIX camera, D3DXMATRIX projection );
 	void ShutDownShape();
 
-	void RenderSphere( D3DXMATRIX camera, D3DXMATRIX projection );
+	void RenderCube( IDirect3DDevice9* device, D3DXMATRIX camera, D3DXMATRIX projection );
 };
 
 #endif

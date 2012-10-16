@@ -1,6 +1,7 @@
 #include "PInvoke.h"
 #include "Timer.h"
 #include "D3DRenderer.h"
+#include "PostProcess.h"
 
 __declspec(dllexport) void CALLBACK _InitializeD3D( HWND handle )
 {
@@ -30,4 +31,13 @@ __declspec(dllexport) int CALLBACK _GetFPS()
 __declspec(dllexport) void CALLBACK _ToggleVSync( bool set )
 {
 	ToggleVSync( set );
+}
+
+__declspec(dllexport) void CALLBACK _TogglePostProcess( bool set )
+{
+	TogglePostProcess( set );
+}
+__declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set )
+{
+	PostProcess::GetInstance()->index = set;
 }

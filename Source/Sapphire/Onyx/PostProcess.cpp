@@ -79,12 +79,10 @@ void PostProcess::Initialize( IDirect3DDevice9 *device )
 	techs[4] = ( "Sepia" );
 	techs[5] = ( "Warped" );
 	techs[6] = ( "BlackAndWhite" );
-	techs[7] = ( "ShiftColorLeft" );
-	techs[8] = ( "ShiftColorRight" );
-	techs[9] = ( "Embossed" );
-	techs[10] = ( "ColorLoop" );
-	techs[11] = ( "TronEnergy" );
-	techs[12] = ( "Dissolve" );
+	techs[7] = ( "Embossed" );
+	techs[8] = ( "ColorLoop" );
+	techs[9] = ( "TronEnergy" );
+	techs[10] = ( "Dissolve" );
 	index = 0;
 
 	// COLOR
@@ -98,67 +96,7 @@ void PostProcess::Initialize( IDirect3DDevice9 *device )
 }
 void PostProcess::Update()
 {
-	UpdateColor();
-	Input();
-}
-void PostProcess::Input( void )
-{
-	if( GetAsyncKeyState( '0' ) )
-	{
-		index = 0;
-	}
-	if( GetAsyncKeyState( '1' ) )
-	{
-		index = 1;
-	}
-	if( GetAsyncKeyState( '2' ) )
-	{
-		index = 2;
-	}
-	if( GetAsyncKeyState( '3' ) )
-	{
-		index = 3;
-	}
-	if( GetAsyncKeyState( '4' ) )
-	{
-		index = 4;
-	}
-	if( GetAsyncKeyState( '5' ) )
-	{
-		index = 5;
-	}
-	if( GetAsyncKeyState( '6' ) )
-	{
-		index = 6;
-	}
-	if( GetAsyncKeyState( '7' ) )
-	{
-		index = 7;
-	}
-	if( GetAsyncKeyState( '8' ) )
-	{
-		index = 8;
-	}
-	if( GetAsyncKeyState( '9' ) )
-	{
-		index = 9;
-	}
-	if( GetAsyncKeyState( 'I' ) )
-	{
-		index = 10;
-	}
-	if( GetAsyncKeyState( 'O' ) )
-	{
-		index = 11;
-	}
-	if( GetAsyncKeyState( 'P' ) )
-	{
-		index = 12;
-		fRed	= 1.0f;
-		fGreen	= 1.0f;
-		fBlue	= 1.0f;
-	}
-
+	UpdateColor();;
 }
 void PostProcess::BeginPostProcess( IDirect3DDevice9 *device )
 {
@@ -196,7 +134,7 @@ void PostProcess::EndPostProcess( IDirect3DDevice9 *device )
 	{
 		postEffect->BeginPass(i);
 		postEffect->SetTexture( "gDiffuseTexture", renderTarget );
-		postEffect->SetFloat( "gTime" , Timer::GetInstance()->GetDeltaTime() );
+		postEffect->SetFloat( "gTime" , Timer::GetInstance()->GetTime() );
 		postEffect->SetFloat( "gRed" , fRed );
 		postEffect->SetFloat( "gGreen" , fGreen );
 		postEffect->SetFloat( "gBlue" , fBlue );
@@ -241,90 +179,68 @@ void PostProcess::ShutDown( void )
 
 void PostProcess::UpdateColor()
 {
-
-	if (index == 12)
+	switch( colChange )
 	{
-		if (fRed > 0.0f)
-			fRed -= 0.0001f;
-		else
-			fRed = 1.0f;
-
-		if (fGreen > 0.0f)
-			fGreen -= 0.0001f;
-		else
-			fGreen = 1.0f;
-
-		if (fBlue > 0.0f)
-			fBlue -= 0.0001f;
-		else
-			fBlue = 1.0f;
-	}
-
-	else
-	{
-		switch( colChange )
+	case 1 :
 		{
-		case 1 :
-			{
-				fRed   += Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			fRed   += Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
 
-				if( fBlue <= 0.0f )
-				{
-					fBlue = 0;
-				}
-				if( fGreen <= 0.0f )
-				{
-					fGreen = 0;
-				}
-				if( fRed >= 1.0f )
-				{
-					colChange = 2;
-				}
-			}
-			break;	
-
-		case 2 :
+			if( fBlue <= 0.0f )
 			{
-				fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				fGreen += Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				if( fRed <= 0.0f )
-				{
-					fRed = 0;
-				}
-				if( fBlue <= 0.0f )
-				{
-					fBlue = 0;
-				}
-				if( fGreen >= 1.0f )
-				{
-					colChange = 3;
-				}
+				fBlue = 0;
 			}
-			break;
-
-		case 3 :
+			if( fGreen <= 0.0f )
 			{
-				fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				fBlue  += Timer::GetInstance()->GetDeltaTime() * 1.0f;
-				if( fRed <= 0.0f )
-				{
-					fRed = 0;
-				}
-				if( fGreen <= 0.0f )
-				{
-					fGreen = 0;
-				}
-				if( fBlue >= 1.0f )
-				{
-					colChange = 1;
-				}
+				fGreen = 0;
 			}
-			break;
+			if( fRed >= 1.0f )
+			{
+				colChange = 2;
+			}
 		}
+		break;	
+
+	case 2 :
+		{
+			fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			fGreen += Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			if( fRed <= 0.0f )
+			{
+				fRed = 0;
+			}
+			if( fBlue <= 0.0f )
+			{
+				fBlue = 0;
+			}
+			if( fGreen >= 1.0f )
+			{
+				colChange = 3;
+			}
+		}
+		break;
+
+	case 3 :
+		{
+			fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			fBlue  += Timer::GetInstance()->GetDeltaTime() * 1.0f;
+			if( fRed <= 0.0f )
+			{
+				fRed = 0;
+			}
+			if( fGreen <= 0.0f )
+			{
+				fGreen = 0;
+			}
+			if( fBlue >= 1.0f )
+			{
+				colChange = 1;
+			}
+		}
+		break;
 	}
 }
 void PostProcess::ReleaseTexture(void)

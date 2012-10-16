@@ -30,6 +30,11 @@ namespace Sapphire
         [DllImport("Onyx")]
         public static extern void _ResetD3D();
 
+        [DllImport("Onyx")]
+        public static extern void _TogglePostProcess(bool set);
+
+        [DllImport("Onyx")]
+        public static extern void _SetPostProcessEffect( int set );
 
         [STAThread]
         static void Main()
@@ -44,6 +49,7 @@ namespace Sapphire
                 Application.DoEvents();
                 _UpdateD3D();
                 _RenderD3D();
+                Form.FramesPerSecond.Text = Convert.ToString(_GetFPS());
             }
         }
     }

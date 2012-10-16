@@ -174,34 +174,6 @@ float4 BlackAndWhiteShader(VS_OUTPUT input) : COLOR
 	return texCol;
 }
 
-// TODO: Green value becomes the red value, blue becomes the green, 
-//red becomes the blue
-float4 ShiftColorRightShader(VS_OUTPUT input) : COLOR
-{
-	float4 texCol = tex2D(gDiffuseSampler, input.uv);
-	//hold the original color so it doesn't get changed
-	float4 holdCol = texCol;
-	
-	texCol.r = holdCol.b;
-	texCol.g = holdCol.r;
-	texCol.b = holdCol.g;
-	return texCol;
-}
-
-// TODO: red value becomes the green value, green becomes the blue, 
-//blue becomes the red
-float4 ShiftColorLeftShader(VS_OUTPUT input) : COLOR
-{
-	float4 texCol = tex2D(gDiffuseSampler, input.uv);
-	//hold the original color so it doesn't get changed
-	float4 holdCol = texCol;
-	
-	texCol.r = holdCol.g;
-	texCol.g = holdCol.b;
-	texCol.b = holdCol.r;
-	return texCol;
-}
-
 float4 EmbossedShader(VS_OUTPUT input) : COLOR
 {
 	float4 texCol = tex2D(gDiffuseSampler, input.uv);
@@ -341,28 +313,6 @@ technique BlackAndWhite
         vertexShader = compile vs_2_0 ScreenSpaceQuad();
 		// TODO: Compile with the correct pixel shader
 		pixelShader = compile ps_2_0 BlackAndWhiteShader();
-    }
-}
-
-technique ShiftColorRight
-{
-	pass FirstPass
-    {
-		// request what vertex and pixel shader are to be used, this can change for each pass.
-        vertexShader = compile vs_2_0 ScreenSpaceQuad();
-		// TODO: Compile with the correct pixel shader
-		pixelShader = compile ps_2_0 ShiftColorRightShader();
-    }
-}
-
-technique ShiftColorLeft
-{
-	pass FirstPass
-    {
-		// request what vertex and pixel shader are to be used, this can change for each pass.
-        vertexShader = compile vs_2_0 ScreenSpaceQuad();
-		// TODO: Compile with the correct pixel shader
-		pixelShader = compile ps_2_0 ShiftColorLeftShader();
     }
 }
 

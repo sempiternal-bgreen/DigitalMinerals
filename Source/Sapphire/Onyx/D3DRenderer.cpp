@@ -22,7 +22,7 @@ HRESULT InitializeD3DRender( HWND hWnd )
 void UpdateD3DRender()
 {
 	Timer::GetInstance()->Update();
-	PostProcess::GetInstance()->Update();
+	if( d3d.m_bPostProcess )	{ PostProcess::GetInstance()->Update(); }
 	shape.UpdateShape( Timer::GetInstance()->GetDeltaTime() );
 	camera.Update( Timer::GetInstance()->GetDeltaTime() );
 }
@@ -32,13 +32,13 @@ void RenderD3DRender()
 
 	d3d.d3dDevice->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 0,0,0 ), 1.0f, 0 );
 
-	PostProcess::GetInstance()->BeginPostProcess( d3d.d3dDevice );
+	if( d3d.m_bPostProcess )	{ PostProcess::GetInstance()->BeginPostProcess( d3d.d3dDevice ); }
 	d3d.d3dDevice->BeginScene();
 
-	shape.RenderShape( camera.CameraMatrix, camera.ProjectionMatrix );
+	shape.RenderShape( d3d.d3dDevice, camera.CameraMatrix, camera.ProjectionMatrix );
 
 	d3d.d3dDevice->EndScene();
-	PostProcess::GetInstance()->EndPostProcess( d3d.d3dDevice );
+	if( d3d.m_bPostProcess )	{ PostProcess::GetInstance()->EndPostProcess( d3d.d3dDevice ); }
 	
 	d3d.d3dDevice->Present( 0, 0, 0, 0 );
 }
@@ -57,4 +57,8 @@ void ToggleVSync( bool toggle )
 {
 	d3d.m_bVSync = toggle;
 	ResetD3DRender();
+}
+void TogglePostProcess( bool toggle )
+{
+	d3d.m_bPostProcess = toggle;
 }

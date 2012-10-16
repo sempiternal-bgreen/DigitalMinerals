@@ -13,6 +13,9 @@ __declspec(dllexport) void CALLBACK _ResetD3D();
 
 __declspec(dllexport) int CALLBACK  _GetFPS();
 __declspec(dllexport) void CALLBACK _ToggleVSync( bool set );
+
+__declspec(dllexport) void CALLBACK _TogglePostProcess( bool set );
+__declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set );
 }
 
 #endif
