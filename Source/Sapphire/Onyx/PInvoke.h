@@ -16,6 +16,7 @@ __declspec(dllexport) void CALLBACK _ToggleVSync( bool set );
 
 __declspec(dllexport) void CALLBACK _TogglePostProcess( bool set );
 __declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set );
+__declspec(dllexport) void CALLBACK _PostProcessMaximizeThresholdColors();
 }
 
 #endif

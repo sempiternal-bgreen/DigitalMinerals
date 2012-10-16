@@ -29,6 +29,11 @@ namespace Sapphire
         private void PostProcessComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program._SetPostProcessEffect(PostProcessComboBox.SelectedIndex);
+
+            if (PostProcessComboBox.SelectedIndex == 10)
+            {
+                Program._PostProcessMaximizeThresholdColors();
+            }
         }
     }
 }

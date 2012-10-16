@@ -179,68 +179,82 @@ void PostProcess::ShutDown( void )
 
 void PostProcess::UpdateColor()
 {
-	switch( colChange )
+	if (index == 10)	// dissolve
 	{
-	case 1 :
-		{
-			fRed   += Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+		if (fRed > 0.0f)
+			fRed -= Timer::GetInstance()->GetDeltaTime() * 0.15f;
 
-			if( fBlue <= 0.0f )
-			{
-				fBlue = 0;
-			}
-			if( fGreen <= 0.0f )
-			{
-				fGreen = 0;
-			}
-			if( fRed >= 1.0f )
-			{
-				colChange = 2;
-			}
-		}
-		break;	
+		if (fGreen > 0.0f)
+			fGreen -= Timer::GetInstance()->GetDeltaTime() * 0.15f;
 
-	case 2 :
+		if (fBlue > 0.0f)
+			fBlue -= Timer::GetInstance()->GetDeltaTime() * 0.15f;
+	}
+	else if (index == 8 || index == 9)	// color loop or Tron effect
+	{
+		switch( colChange )
 		{
-			fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			fGreen += Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			if( fRed <= 0.0f )
+		case 1 :
 			{
-				fRed = 0;
-			}
-			if( fBlue <= 0.0f )
-			{
-				fBlue = 0;
-			}
-			if( fGreen >= 1.0f )
-			{
-				colChange = 3;
-			}
-		}
-		break;
+				fRed   += Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
 
-	case 3 :
-		{
-			fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			fBlue  += Timer::GetInstance()->GetDeltaTime() * 1.0f;
-			if( fRed <= 0.0f )
-			{
-				fRed = 0;
+				if( fBlue <= 0.0f )
+				{
+					fBlue = 0;
+				}
+				if( fGreen <= 0.0f )
+				{
+					fGreen = 0;
+				}
+				if( fRed >= 1.0f )
+				{
+					colChange = 2;
+				}
 			}
-			if( fGreen <= 0.0f )
+			break;	
+
+		case 2 :
 			{
-				fGreen = 0;
+				fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				fGreen += Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				fBlue  -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				if( fRed <= 0.0f )
+				{
+					fRed = 0;
+				}
+				if( fBlue <= 0.0f )
+				{
+					fBlue = 0;
+				}
+				if( fGreen >= 1.0f )
+				{
+					colChange = 3;
+				}
 			}
-			if( fBlue >= 1.0f )
+			break;
+
+		case 3 :
 			{
-				colChange = 1;
+				fRed   -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				fGreen -= Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				fBlue  += Timer::GetInstance()->GetDeltaTime() * 1.0f;
+				if( fRed <= 0.0f )
+				{
+					fRed = 0;
+				}
+				if( fGreen <= 0.0f )
+				{
+					fGreen = 0;
+				}
+				if( fBlue >= 1.0f )
+				{
+					colChange = 1;
+				}
 			}
+			break;
 		}
-		break;
 	}
 }
 void PostProcess::ReleaseTexture(void)
@@ -251,3 +265,4 @@ void PostProcess::ReCreateTexture( IDirect3DDevice9 *device )
 {
 	D3DXCreateTexture( device, backbuffer.Width, backbuffer.Height, 1, D3DUSAGE_RENDERTARGET, D3DFMT_R8G8B8, D3DPOOL_DEFAULT, &renderTarget ); 
 }
+

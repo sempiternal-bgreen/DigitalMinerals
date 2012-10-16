@@ -44,6 +44,7 @@ public:
 	void ReleaseTexture(void);
 	void ReCreateTexture( IDirect3DDevice9 *device );
 	void UpdateColor();
+	void MaximizeThresholdColors()							{ fRed = fGreen = fBlue = 1.0f;}
 };
 
 #endif

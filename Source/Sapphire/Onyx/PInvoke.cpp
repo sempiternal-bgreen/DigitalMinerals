@@ -41,3 +41,7 @@ __declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set )
 {
 	PostProcess::GetInstance()->index = set;
 }
+__declspec(dllexport) void CALLBACK _PostProcessMaximizeThresholdColors()
+{
+	PostProcess::GetInstance()->MaximizeThresholdColors();
+}

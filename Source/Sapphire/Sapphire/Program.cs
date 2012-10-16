@@ -36,6 +36,9 @@ namespace Sapphire
         [DllImport("Onyx")]
         public static extern void _SetPostProcessEffect( int set );
 
+        [DllImport("Onyx")]
+        public static extern void _PostProcessMaximizeThresholdColors();
+
         [STAThread]
         static void Main()
         {
