@@ -33,8 +33,10 @@ public:
 	float						fBlue;
 	int							colChange;
 
-	const char* techs[11];
-	int index;
+	const char*					techs[11];
+	int							index;
+
+	bool						m_bPostProcess;
 
 	void Initialize( IDirect3DDevice9 *device );
 	void Update();

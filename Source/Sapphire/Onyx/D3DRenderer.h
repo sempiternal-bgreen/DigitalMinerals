@@ -10,6 +10,5 @@ void ShutDownD3DRender();
 void ResetD3DRender();
 
 void ToggleVSync( bool toggle );
-void TogglePostProcess( bool toggle );
 
 #endif

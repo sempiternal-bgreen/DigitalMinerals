@@ -46,7 +46,7 @@ namespace Sapphire
             Form.Show();
 
             _InitializeD3D( Form.graphicsPanel1.Handle.ToInt32() );
-
+            Form.PostProcessComboBox.SelectedIndex = 0;
             while (Form.Created)
             {
                 Application.DoEvents();

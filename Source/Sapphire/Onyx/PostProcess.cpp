@@ -15,6 +15,7 @@ PostProcess* PostProcess::GetInstance(void)
 
 void PostProcess::Initialize( IDirect3DDevice9 *device )
 {
+	m_bPostProcess = true;
 
 	// GRAB THE ACTUAL DISPLAY WIDTH
 	IDirect3DSurface9* bBuffer = 0;

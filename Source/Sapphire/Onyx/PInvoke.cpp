@@ -35,7 +35,7 @@ __declspec(dllexport) void CALLBACK _ToggleVSync( bool set )
 
 __declspec(dllexport) void CALLBACK _TogglePostProcess( bool set )
 {
-	TogglePostProcess( set );
+	PostProcess::GetInstance()->m_bPostProcess = set;
 }
 __declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set )
 {

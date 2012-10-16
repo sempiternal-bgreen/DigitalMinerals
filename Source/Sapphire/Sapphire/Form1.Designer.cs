@@ -196,6 +196,8 @@
             // PostProcessCheckBox
             // 
             this.PostProcessCheckBox.AutoSize = true;
+            this.PostProcessCheckBox.Checked = true;
+            this.PostProcessCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.PostProcessCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PostProcessCheckBox.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.PostProcessCheckBox.Location = new System.Drawing.Point(6, 19);
@@ -327,7 +329,7 @@
         private System.Windows.Forms.CheckBox PostProcessCheckBox;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox PostProcessEffects;
-        private System.Windows.Forms.ComboBox PostProcessComboBox;
+        public System.Windows.Forms.ComboBox PostProcessComboBox;
 
     }
 }

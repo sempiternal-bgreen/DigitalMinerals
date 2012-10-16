@@ -17,7 +17,6 @@ public:
 	D3DPRESENT_PARAMETERS	d3dPresentParameters;
 
 	bool					m_bVSync;
-	bool					m_bPostProcess;
 
 	HRESULT InitializeD3D( HWND hWnd );
 	void ShutDownD3D();
