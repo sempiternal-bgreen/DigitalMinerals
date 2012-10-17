@@ -4,7 +4,7 @@
 void Shape::InitializeShape( IDirect3DDevice9* device )
 {
 	D3DXCreateEffectFromFile(device,L"../../Resources/Shaders/textured.fx",0,0,0,0,&textureEffect,0);
-	D3DXCreateTextureFromFile( device, L"../../Resources/Textures/metallock.dds", &metalTexture);
+	D3DXCreateTextureFromFile( device, L"../../Resources/Textures/metallock3.dds", &metalTexture);
 	void *mem = 0;
 	// create cube vertex buffer
 	struct VERTUV
@@ -59,7 +59,7 @@ void Shape::InitializeShape( IDirect3DDevice9* device )
 	};
 	device->CreateVertexDeclaration( decl2, &cubedecl );
 
-	D3DXMatrixTranslation( &cube, 0, 1.5f, -2.5f );
+	D3DXMatrixTranslation( &cube, 0, 1.5f, -2.75f );
 }
 void Shape::UpdateShape( float time )
 {
