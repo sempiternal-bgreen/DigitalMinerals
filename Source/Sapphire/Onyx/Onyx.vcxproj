@@ -77,6 +77,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="D3D.h" />
     <ClInclude Include="D3DRenderer.h" />
+    <ClInclude Include="Game States\IBaseState.h" />
+    <ClInclude Include="Game States\MainMenuState.h" />
     <ClInclude Include="PInvoke.h" />
     <ClInclude Include="PostProcess.h" />
     <ClInclude Include="Shape.h" />
@@ -86,6 +88,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D3D.cpp" />
     <ClCompile Include="D3DRenderer.cpp" />
+    <ClCompile Include="Game States\MainMenuState.cpp" />
     <ClCompile Include="PInvoke.cpp" />
     <ClCompile Include="PostProcess.cpp" />
     <ClCompile Include="Shape.cpp" />

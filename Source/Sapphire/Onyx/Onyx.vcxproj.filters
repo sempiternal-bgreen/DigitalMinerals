@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Game States">
+      <UniqueIdentifier>{08b80e87-07f9-4c1e-9822-ba4aef4b1667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game States\Header Files">
+      <UniqueIdentifier>{a6577b42-1c86-40f2-87ad-3f5a9928838a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game States\Source Files">
+      <UniqueIdentifier>{7fb8a413-31ef-4a2f-b4b9-0197151f5be6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PInvoke.h">
@@ -36,6 +45,12 @@
     <ClInclude Include="Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game States\IBaseState.h">
+      <Filter>Game States\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\MainMenuState.h">
+      <Filter>Game States\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PInvoke.cpp">
@@ -58,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="Shape.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\MainMenuState.cpp">
+      <Filter>Game States\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -172,6 +172,7 @@
             // 
             // PostProcessComboBox
             // 
+            this.PostProcessComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PostProcessComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PostProcessComboBox.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.PostProcessComboBox.FormattingEnabled = true;
