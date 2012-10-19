@@ -17,7 +17,6 @@ public:
 	
 	void HandleEvent( Event* pEvent );
 
-
 	//	State Pointer
 	static MainMenuState* GetInstance(void);
 	static void DeleteInstance();

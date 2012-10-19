@@ -79,20 +79,29 @@
     <ClInclude Include="D3DRenderer.h" />
     <ClInclude Include="Game States\IBaseState.h" />
     <ClInclude Include="Game States\MainMenuState.h" />
+    <ClInclude Include="Message Event\Event.h" />
+    <ClInclude Include="Message Event\EventManager.h" />
+    <ClInclude Include="Message Event\IListener.h" />
+    <ClInclude Include="Message Event\Message.h" />
+    <ClInclude Include="Message Event\MessageManager.h" />
     <ClInclude Include="PInvoke.h" />
     <ClInclude Include="PostProcess.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Tools\DebugConsole.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D3D.cpp" />
     <ClCompile Include="D3DRenderer.cpp" />
     <ClCompile Include="Game States\MainMenuState.cpp" />
+    <ClCompile Include="Message Event\EventManager.cpp" />
+    <ClCompile Include="Message Event\MessageManager.cpp" />
     <ClCompile Include="PInvoke.cpp" />
     <ClCompile Include="PostProcess.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Tools\DebugConsole.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

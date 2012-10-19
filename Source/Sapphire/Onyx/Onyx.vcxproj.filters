@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -22,28 +14,63 @@
     <Filter Include="Game States\Source Files">
       <UniqueIdentifier>{7fb8a413-31ef-4a2f-b4b9-0197151f5be6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Message Event">
+      <UniqueIdentifier>{a1bec847-cc1d-49f7-9445-ad972d7f0eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Message Event\Header Files">
+      <UniqueIdentifier>{b72183c7-bd37-49a4-823f-7a9d8fc2b96d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Message Event\Source Files">
+      <UniqueIdentifier>{e355fb43-b5d4-4c1c-9b77-c9421854537d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{0dfd7e01-904b-4c4a-b9b2-9b3f127bfd94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Render\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="PInvoke">
+      <UniqueIdentifier>{a3c00e24-9898-40b5-b80c-bf88639d89ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PInvoke\Header Files">
+      <UniqueIdentifier>{ca13803a-e120-4c6c-b1c5-239e0c8d69dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PInvoke\Source Files">
+      <UniqueIdentifier>{aeca9668-b460-4b8a-921e-c25e2f12f6c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{05a1cec3-1633-43e3-83ab-d9cba6f0a131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Header Files">
+      <UniqueIdentifier>{831e4075-775f-4120-8962-e7051f30cb2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools\Source Files">
+      <UniqueIdentifier>{83990e3b-6ee2-41a9-96a2-4979f5a39ef9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PInvoke.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Render\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D3DRenderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Render\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D3D.h">
-      <Filter>Header Files</Filter>
+      <Filter>Render\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
+      <Filter>Render\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PostProcess.h">
-      <Filter>Header Files</Filter>
+      <Filter>Render\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
-      <Filter>Header Files</Filter>
+      <Filter>Render\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game States\IBaseState.h">
       <Filter>Game States\Header Files</Filter>
@@ -51,31 +78,61 @@
     <ClInclude Include="Game States\MainMenuState.h">
       <Filter>Game States\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Message Event\Event.h">
+      <Filter>Message Event\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Message Event\IListener.h">
+      <Filter>Message Event\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Message Event\EventManager.h">
+      <Filter>Message Event\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Message Event\Message.h">
+      <Filter>Message Event\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Message Event\MessageManager.h">
+      <Filter>Message Event\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PInvoke.h">
+      <Filter>PInvoke\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\DebugConsole.h">
+      <Filter>Tools\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PInvoke.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Render\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D3DRenderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Render\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D3D.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Render\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Render\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PostProcess.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Render\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shape.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Render\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game States\MainMenuState.cpp">
       <Filter>Game States\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Message Event\EventManager.cpp">
+      <Filter>Message Event\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Message Event\MessageManager.cpp">
+      <Filter>Message Event\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PInvoke.cpp">
+      <Filter>PInvoke\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools\DebugConsole.cpp">
+      <Filter>Tools\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

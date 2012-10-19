@@ -6,12 +6,18 @@
 #include "Timer.h"
 #include "PostProcess.h"
 
+// DEBUG CONSOLE
+#include "Tools\DebugConsole.h"
+
 D3D		d3d;
 Camera  camera;
 Shape	shape;
 
 HRESULT InitializeD3DRender( HWND hWnd )
 {
+	// STARTUP DEBUG CONSOLE
+	SetupDebugConsole();
+
 	d3d.InitializeD3D( hWnd );
 	PostProcess::GetInstance()->Initialize( d3d.d3dDevice );
 	camera.Initialize();
