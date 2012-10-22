@@ -2,42 +2,42 @@
 
 EventManager* EventManager::m_pInstance = NULL;
 //	Register Client.
-void EventManager::RegisterClient(EVENTID eventID, IListener* pClient)
+void EventManager::RegisterClient( EVENTID eventID, IListener* pClient )
 {
 	//	Error check to make sure the client exists and hasn't been registered for this event already.
-	if (!pClient || AlreadyRegistered(eventID, pClient))	return;
+	if ( !pClient || AlreadyRegistered( eventID, pClient ) )	return;
 
 	//	Register (Build) the database of clients.
-	m_ClientDatabase.insert( make_pair(eventID, pClient) );
+	m_ClientDatabase.insert( make_pair( eventID, pClient ) );
 }
 
 //	Unregister Client
-void EventManager::UnregisterClient(EVENTID eventID, IListener *pClient)
+void EventManager::UnregisterClient( EVENTID eventID, IListener *pClient )
 {
 	//	Make an iterator that will iterate all of our clients that
 	//	should be receiveing this event
-	pair<multimap<EVENTID, IListener*>::iterator,
+	pair<multimap<EVENTID, IListener*>::iterator, 
 		multimap<EVENTID, IListener*>::iterator> range;
 
 	//	Find all of the clients that are able to receive this event.
-	range = m_ClientDatabase.equal_range(eventID);
+	range = m_ClientDatabase.equal_range( eventID );
 
 	//	Go through the list of clients that are able to receive this event.
-	for(multimap<EVENTID, IListener*>::iterator mmIter = range.first;
-		mmIter != range.second; mmIter++)
+	for( multimap<EVENTID, IListener*>::iterator mmIter = range.first;
+		mmIter != range.second; mmIter++ )
 	{
 		//	check if the pointer is equal to the client
-		if((*mmIter).second == pClient)
+		if ( ( *mmIter ).second == pClient )
 		{
 			//	remove the client from the list
-			mmIter = m_ClientDatabase.erase(mmIter);
+			mmIter = m_ClientDatabase.erase( mmIter );
 			break;
 		}
 	}
 }
 
 //	Unregister Client All
-void EventManager::UnregisterClientAll(IListener *pClient)
+void EventManager::UnregisterClientAll( IListener *pClient)
 {
 	multimap<string, IListener*>::iterator mmIter = m_ClientDatabase.begin();
 

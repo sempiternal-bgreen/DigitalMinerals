@@ -42,16 +42,31 @@ namespace Sapphire
         [STAThread]
         static void Main()
         {
+            // Create Our Own Form
             SapphireForm Form = new SapphireForm();
+
+            // Show Everthing On the Form
             Form.Show();
 
+            // Send Our Handle To D3D Engine Side
             _InitializeD3D( Form.graphicsPanel1.Handle.ToInt32() );
+
+            // Set Our Post Process Combo Box to "No Effect"
             Form.PostProcessComboBox.SelectedIndex = 0;
+
+            // Loop While We Have a Form
             while (Form.Created)
             {
+                // Do All The Events Within The Application
                 Application.DoEvents();
+
+                // Update our Engine
                 _UpdateD3D();
+
+                // Render our Engine
                 _RenderD3D();
+
+                // Display FrameRate Onto the Form Using our GetFPS() Function 
                 Form.FramesPerSecond.Text = Convert.ToString(_GetFPS());
             }
         }
