@@ -46,7 +46,7 @@ void UpdateD3DRender()
 	shape.UpdateShape( Timer::GetInstance()->GetDeltaTime() );
 
 	// UPDATE CAMERA
-	camera.Update( Timer::GetInstance()->GetDeltaTime() );
+	camera.Update( Timer::GetInstance()->GetDeltaTime(),d3d.m_fScreenWidth, d3d.m_fScreenHeight );
 }
 void RenderD3DRender()
 {
