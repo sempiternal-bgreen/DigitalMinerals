@@ -31,25 +31,25 @@ void Camera::Update( float time, float screenWidth, float screenHeight )
 {
 	if( GetAsyncKeyState( VK_RBUTTON ) )
 	{
+		GetCursorPos( &mousePos );
 		MouseLook( CameraMatrix, time, screenWidth, screenHeight );
-
-		if( GetAsyncKeyState( 'W' ) )	{ CameraMatrix._43 -= 1.0f * time; }
-		if( GetAsyncKeyState( 'S' ) )	{ CameraMatrix._43 += 1.0f * time; }
-		if( GetAsyncKeyState( 'A' ) )	{ CameraMatrix._41 += 1.0f * time; }
-		if( GetAsyncKeyState( 'D' ) )	{ CameraMatrix._41 -= 1.0f * time; }
-	}
+	}		
+	
+		if( GetAsyncKeyState( 'W' ) )	{ CameraMatrix._43 -= 10.0f * time; }
+		if( GetAsyncKeyState( 'S' ) )	{ CameraMatrix._43 += 10.0f * time; }
+		if( GetAsyncKeyState( 'A' ) )	{ CameraMatrix._41 += 10.0f * time; }
+		if( GetAsyncKeyState( 'D' ) )	{ CameraMatrix._41 -= 10.0f * time; }
 }
 
-void Camera::MouseLook( D3DXMATRIX matrix, float time, float screenWidth, float screenHeight )
+void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float screenHeight )
 {
-	
-	POINT mousePos;
-	GetCursorPos( &mousePos );
-	SetCursorPos( (int)screenWidth / 2, (int)screenHeight / 2 );
+	POINT tempMousePos;
+	GetCursorPos( &tempMousePos );
+	SetCursorPos( mousePos.x, mousePos.y );
 
-	float mouseDiff[2] = { float( screenWidth - mousePos.x ), float( mousePos.y - screenHeight ) };
+	float mouseDiff[2] = { float( tempMousePos.x - mousePos.x ), float( tempMousePos.y - mousePos.y ) };
 
-	mouseDiff[0] *= time;
+	mouseDiff[0] *= time; 
 	mouseDiff[1] *= time;
 
 	D3DXMatrixRotationY( &matrix, D3DXToRadian( mouseDiff[0] ) );
@@ -58,12 +58,12 @@ void Camera::MouseLook( D3DXMATRIX matrix, float time, float screenWidth, float 
 	D3DXVECTOR3 VectorZ( matrix._31, matrix._32, matrix._33 );
 	D3DXVec3Normalize( &VectorZ, &VectorZ );
 
-	D3DXVECTOR3 VectorX( matrix._11, matrix._12, matrix._13 );
+	D3DXVECTOR3 VectorX;
 	D3DXVec3Cross( &VectorX, &VectorZ, &Up );
 
 	D3DXVec3Normalize( &VectorX, &VectorX );
 
-	D3DXVECTOR3 VectorY( matrix._21, matrix._22, matrix._23 );
+	D3DXVECTOR3 VectorY;
 	D3DXVec3Cross( &VectorY, &VectorZ, &VectorX );
 
 	D3DXVec3Normalize( &VectorY, &VectorY );

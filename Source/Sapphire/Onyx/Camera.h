@@ -22,9 +22,11 @@ public:
 	float m_fZNear;
 	float m_fZFar;
 	
+	POINT mousePos;
+
 	void Initialize( float width, float height );
 	void Update( float time, float screenWidth, float screenHeight );
-	void MouseLook( D3DXMATRIX matrix, float time, float screenWidth, float screenHeight );
+	void MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float screenHeight );
 };
 
 
