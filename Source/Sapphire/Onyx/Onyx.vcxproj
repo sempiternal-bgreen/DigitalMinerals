@@ -79,6 +79,9 @@
     <ClInclude Include="D3DRenderer.h" />
     <ClInclude Include="Game States\IBaseState.h" />
     <ClInclude Include="Game States\MainMenuState.h" />
+    <ClInclude Include="Math\matrix3.h" />
+    <ClInclude Include="Math\matrix4.h" />
+    <ClInclude Include="Math\vec3.h" />
     <ClInclude Include="Message Event\Event.h" />
     <ClInclude Include="Message Event\EventManager.h" />
     <ClInclude Include="Message Event\IListener.h" />

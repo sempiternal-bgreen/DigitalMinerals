@@ -52,6 +52,9 @@
     <Filter Include="Tools\Source Files">
       <UniqueIdentifier>{83990e3b-6ee2-41a9-96a2-4979f5a39ef9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{d3524473-172c-4164-ae57-339338935e9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
@@ -98,6 +101,15 @@
     </ClInclude>
     <ClInclude Include="Tools\DebugConsole.h">
       <Filter>Tools\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\matrix3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\matrix4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\vec3.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
