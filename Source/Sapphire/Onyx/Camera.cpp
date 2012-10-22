@@ -52,8 +52,14 @@ void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float
 	mouseDiff[0] *= time; 
 	mouseDiff[1] *= time;
 
-	D3DXMatrixRotationY( &matrix, D3DXToRadian( mouseDiff[0] ) );
-	D3DXMatrixRotationX( &matrix, D3DXToRadian( mouseDiff[1] ) );
+	D3DXMATRIX yRot;
+	D3DXMATRIX xRot;
+	D3DXMatrixIdentity(&yRot);
+	D3DXMatrixIdentity(&xRot);
+	D3DXMatrixRotationY( &yRot, D3DXToRadian( mouseDiff[0] ) );
+	D3DXMatrixRotationX( &xRot, D3DXToRadian( mouseDiff[1] ) );
+
+	matrix = yRot * xRot * matrix;
 
 	D3DXVECTOR3 VectorZ( matrix._31, matrix._32, matrix._33 );
 	D3DXVec3Normalize( &VectorZ, &VectorZ );
