@@ -3,7 +3,7 @@
 
 #include <Windows.h>
 
-HRESULT InitializeD3DRender( HWND hWnd );
+HRESULT InitializeD3DRender( HWND hWnd, float screenWidth, float screenHeight );
 void UpdateD3DRender();
 void RenderD3DRender();
 void ShutDownD3DRender();

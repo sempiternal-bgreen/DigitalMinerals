@@ -3,10 +3,10 @@
 #include "D3DRenderer.h"
 #include "PostProcess.h"
 
-__declspec(dllexport) void CALLBACK _InitializeD3D( HWND handle )
+__declspec(dllexport) void CALLBACK _InitializeD3D( HWND handle, float screenWidth, float screenHeight )
 {
 	Timer::GetInstance()->Reset();
-	InitializeD3DRender( handle );
+	InitializeD3DRender( handle, screenWidth, screenHeight );
 }
 __declspec(dllexport) void CALLBACK _RenderD3D( )
 {
@@ -44,4 +44,13 @@ __declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set )
 __declspec(dllexport) void CALLBACK _PostProcessMaximizeThresholdColors()
 {
 	PostProcess::GetInstance()->MaximizeThresholdColors();
+}
+
+__declspec(dllexport) void CALLBACK _SetScreenWidth( float width )
+{
+	//SCREEN_WIDTH = width;
+}
+__declspec(dllexport) void CALLBACK _SetScreenHeight( float height )
+{
+	//SCREEN_HEIGHT = height;
 }

@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-void Camera::Initialize( void )
+void Camera::Initialize( float width, float height )
 {
 	Eye.x = 0.0f;
 	Eye.y = 2.0f;
@@ -17,7 +17,7 @@ void Camera::Initialize( void )
 	D3DXMatrixLookAtLH( &CameraMatrix, &Eye, &At, &Up );
 
 	m_fFieldOfView = D3DXToRadian( 75 );
-	m_fAspectRatio = 640.0f / 480.0f;
+	m_fAspectRatio = width / height;
 	m_fZNear = 0.01f;
 	m_fZFar = 100.0f;
 
@@ -26,20 +26,37 @@ void Camera::Initialize( void )
 
 void Camera::Update( float time )
 {
-	if( GetAsyncKeyState( 'W' ) )
+	if( GetAsyncKeyState( VK_RBUTTON ) )
 	{
-		CameraMatrix._43 -= 1.0f * time;
+		if( GetAsyncKeyState( 'W' ) )
+		{
+			CameraMatrix._43 -= 1.0f * time;
+		}
+		if( GetAsyncKeyState( 'S' ) )
+		{
+			CameraMatrix._43 += 1.0f * time;
+		}
+		if( GetAsyncKeyState( 'A' ) )
+		{
+			CameraMatrix._41 += 1.0f * time;
+		}
+		if( GetAsyncKeyState( 'D' ) )
+		{
+			CameraMatrix._41 -= 1.0f * time;
+		}
+
+
 	}
-	if( GetAsyncKeyState( 'S' ) )
-	{
-		CameraMatrix._43 += 1.0f * time;
-	}
-	if( GetAsyncKeyState( 'A' ) )
-	{
-		CameraMatrix._41 += 1.0f * time;
-	}
-	if( GetAsyncKeyState( 'D' ) )
-	{
-		CameraMatrix._41 -= 1.0f * time;
-	}
+}
+
+void Camera::MouseLook( D3DXMATRIX matrix, float time )
+{
+	POINT mousePos;
+	GetCursorPos( &mousePos );
+	SetCursorPos( 320, 240 );
+
+	float mouseDiff[2] = { float( 320 - mousePos.x ), float( mousePos.y - 240 ) };
+
+
+ 
 }

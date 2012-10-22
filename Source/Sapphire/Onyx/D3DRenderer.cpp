@@ -13,23 +13,39 @@ D3D		d3d;
 Camera  camera;
 Shape	shape;
 
-HRESULT InitializeD3DRender( HWND hWnd )
+HRESULT InitializeD3DRender( HWND hWnd, float screenWidth, float screenHeight )
 {
 	// STARTUP DEBUG CONSOLE
 	SetupDebugConsole();
 
+	// INITIALIZE D3D
 	d3d.InitializeD3D( hWnd );
+	d3d.SetScreenWidth( screenWidth );
+	d3d.SetScreenHeight( screenHeight );
+
+	// INITIALIZE POSTPROCESSING 
 	PostProcess::GetInstance()->Initialize( d3d.d3dDevice );
-	camera.Initialize();
+
+	// INITIALIZE CAMERA
+	camera.Initialize( screenWidth, screenHeight );
+
+	// INITIALIZE BASIC SHAPE
 	shape.InitializeShape( d3d.d3dDevice );
 
 	return S_OK;
 }
 void UpdateD3DRender()
 {
+	// UPDATE TIMER
 	Timer::GetInstance()->Update();
+
+	// CHECK IF POSTPROCESSING IS ALLOWED; UPDATE IF TRUE
 	if( PostProcess::GetInstance()->m_bPostProcess )	{ PostProcess::GetInstance()->Update(); }
+
+	// UPDATE BASIC SHAPE
 	shape.UpdateShape( Timer::GetInstance()->GetDeltaTime() );
+
+	// UPDATE CAMERA
 	camera.Update( Timer::GetInstance()->GetDeltaTime() );
 }
 void RenderD3DRender()
@@ -45,7 +61,7 @@ void RenderD3DRender()
 
 	d3d.d3dDevice->EndScene();
 	if( PostProcess::GetInstance()->m_bPostProcess )	{ PostProcess::GetInstance()->EndPostProcess( d3d.d3dDevice ); }
-	
+
 	d3d.d3dDevice->Present( 0, 0, 0, 0 );
 }
 

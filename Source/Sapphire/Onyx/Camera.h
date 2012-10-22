@@ -21,10 +21,10 @@ public:
 	float m_fAspectRatio;
 	float m_fZNear;
 	float m_fZFar;
-
-	void Initialize( void );
-	void Update( float time );
 	
+	void Initialize( float width, float height );
+	void Update( float time );
+	void MouseLook( D3DXMATRIX matrix, float time );
 };
 
 

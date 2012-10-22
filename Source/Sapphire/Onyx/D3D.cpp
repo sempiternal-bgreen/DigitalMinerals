@@ -3,6 +3,8 @@
 HRESULT D3D::InitializeD3D( HWND hWnd )
 {	
 	m_bVSync = true;
+	SetScreenWidth( 0.0f );
+	SetScreenHeight( 0.0f );
 	if( NULL == ( d3dObject = Direct3DCreate9( D3D_SDK_VERSION ) ) ) { return E_FAIL; }
 	ZeroMemory( &d3dPresentParameters, sizeof( D3DPRESENT_PARAMETERS ) );
 

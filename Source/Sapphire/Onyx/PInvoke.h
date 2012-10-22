@@ -5,7 +5,7 @@
 
 extern "C"
 {
-__declspec(dllexport) void CALLBACK _InitializeD3D( HWND handle );
+__declspec(dllexport) void CALLBACK _InitializeD3D( HWND handle, float screenWidth, float screenHeight );
 __declspec(dllexport) void CALLBACK _RenderD3D();
 __declspec(dllexport) void CALLBACK _UpdateD3D();
 __declspec(dllexport) void CALLBACK _ShutDownD3D();
@@ -17,6 +17,9 @@ __declspec(dllexport) void CALLBACK _ToggleVSync( bool set );
 __declspec(dllexport) void CALLBACK _TogglePostProcess( bool set );
 __declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set );
 __declspec(dllexport) void CALLBACK _PostProcessMaximizeThresholdColors();
+
+__declspec(dllexport) void CALLBACK _SetScreenWidth( float width );
+__declspec(dllexport) void CALLBACK _SetScreenHeight( float height );
 }
 
 #endif

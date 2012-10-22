@@ -10,7 +10,7 @@ namespace Sapphire
     static class Program
     {
         [DllImport("Onyx")]
-        public static extern bool _InitializeD3D(Int32 handle);
+        public static extern bool _InitializeD3D(Int32 handle, float screenWidth, float screenHeight);
 
         [DllImport("Onyx")]
         public static extern void _RenderD3D();
@@ -49,7 +49,7 @@ namespace Sapphire
             Form.Show();
 
             // Send Our Handle To D3D Engine Side
-            _InitializeD3D( Form.graphicsPanel1.Handle.ToInt32() );
+            _InitializeD3D( Form.graphicsPanel1.Handle.ToInt32(), Form.graphicsPanel1.Width, Form.graphicsPanel1.Height );
 
             // Set Our Post Process Combo Box to "No Effect"
             Form.PostProcessComboBox.SelectedIndex = 0;
