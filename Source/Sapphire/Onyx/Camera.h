@@ -23,10 +23,14 @@ public:
 	float m_fZFar;
 	
 	POINT mousePos;
+	POINT holdMousePos;			// the mouse's position when you lock the camera
+	bool bCameraIsLocked;
 
 	void Initialize( float width, float height );
 	void Update( float time, float screenWidth, float screenHeight );
 	void MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float screenHeight );
+	void NormalizeCameraMatrix();
+	bool MouseHasMoved();
 };
 
 

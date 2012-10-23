@@ -25,16 +25,28 @@ void Camera::Initialize( float width, float height )
 	m_fZFar = 100.0f;
 
 	D3DXMatrixPerspectiveFovLH( &ProjectionMatrix, m_fFieldOfView, m_fAspectRatio, m_fZNear, m_fZFar );
+
+	bCameraIsLocked = false;
 }
 
 void Camera::Update( float time, float screenWidth, float screenHeight )
 {
+	GetCursorPos( &mousePos );
+
 	if( GetAsyncKeyState( VK_RBUTTON ) )
 	{
-		GetCursorPos( &mousePos );
-		MouseLook( CameraMatrix, time, screenWidth, screenHeight );
+		// toggle moving the camera around this location
+		bCameraIsLocked = !bCameraIsLocked;
+
+		if ( bCameraIsLocked )
+		{
+			GetCursorPos( &holdMousePos );
+		}		
 	}		
-	
+
+	if ( bCameraIsLocked && MouseHasMoved()  )
+			MouseLook( CameraMatrix, time, screenWidth, screenHeight );
+
 		if( GetAsyncKeyState( 'W' ) )	{ CameraMatrix._43 -= 10.0f * time; }
 		if( GetAsyncKeyState( 'S' ) )	{ CameraMatrix._43 += 10.0f * time; }
 		if( GetAsyncKeyState( 'A' ) )	{ CameraMatrix._41 += 10.0f * time; }
@@ -43,11 +55,12 @@ void Camera::Update( float time, float screenWidth, float screenHeight )
 
 void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float screenHeight )
 {
-	POINT tempMousePos;
-	GetCursorPos( &tempMousePos );
-	SetCursorPos( mousePos.x, mousePos.y );
+	/*POINT tempMousePos;
+	GetCursorPos( &tempMousePos );*/
+	SetCursorPos( holdMousePos.x, holdMousePos.y );
 
-	float mouseDiff[2] = { float( tempMousePos.x - mousePos.x ), float( tempMousePos.y - mousePos.y ) };
+	// How much has the mouse moved?
+	float mouseDiff[2] = { float( mousePos.x - holdMousePos.x ), float( mousePos.y - holdMousePos.y ) };
 
 	mouseDiff[0] *= time; 
 	mouseDiff[1] *= time;
@@ -59,9 +72,15 @@ void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float
 	D3DXMatrixRotationY( &yRot, D3DXToRadian( mouseDiff[0] ) );
 	D3DXMatrixRotationX( &xRot, D3DXToRadian( mouseDiff[1] ) );
 
-	matrix = yRot * xRot * matrix;
+	// Rotate the camera about the y and x axes
+	matrix = xRot * yRot * matrix;
 
-	D3DXVECTOR3 VectorZ( matrix._31, matrix._32, matrix._33 );
+	NormalizeCameraMatrix();
+}
+
+void Camera::NormalizeCameraMatrix()
+{
+	D3DXVECTOR3 VectorZ( CameraMatrix._31, CameraMatrix._32, CameraMatrix._33 );
 	D3DXVec3Normalize( &VectorZ, &VectorZ );
 
 	D3DXVECTOR3 VectorX;
@@ -85,4 +104,9 @@ void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float
 	CameraMatrix._31 = VectorZ.x;
 	CameraMatrix._32 = VectorZ.y;
 	CameraMatrix._33 = VectorZ.z;
+}
+
+bool Camera::MouseHasMoved()
+{
+	return (mousePos.x == holdMousePos.x && mousePos.y == holdMousePos.y) ? false : true;
 }
