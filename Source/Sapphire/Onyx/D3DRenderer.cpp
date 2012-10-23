@@ -16,7 +16,7 @@ Shape	shape;
 HRESULT InitializeD3DRender( HWND hWnd, float screenWidth, float screenHeight )
 {
 	// STARTUP DEBUG CONSOLE
-	SetupDebugConsole();
+	//SetupDebugConsole();
 
 	// INITIALIZE D3D
 	d3d.InitializeD3D( hWnd );
