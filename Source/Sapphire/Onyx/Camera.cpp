@@ -3,7 +3,7 @@
 #include "Math\matrix4.h"
 #include "Math\vec3.h"
 
-void Camera::Initialize( float width, float height )
+void Camera::Initialize( float screenWidth, float screenHeight )
 {
 	Eye.x = 0.0f;
 	Eye.y = 2.0f;
@@ -20,7 +20,7 @@ void Camera::Initialize( float width, float height )
 	D3DXMatrixLookAtLH( &CameraMatrix, &Eye, &At, &Up );
 
 	m_fFieldOfView = D3DXToRadian( 75.0f );
-	m_fAspectRatio = width / height;
+	m_fAspectRatio = screenWidth / screenHeight;
 	m_fZNear = 0.01f;
 	m_fZFar = 100.0f;
 
@@ -35,7 +35,7 @@ void Camera::Update( float time, float screenWidth, float screenHeight )
 
 	if( GetAsyncKeyState( VK_RBUTTON ) )
 	{
-		// toggle moving the camera around this location
+		//toggle moving the camera around this location
 		bCameraIsLocked = !bCameraIsLocked;
 
 		if ( bCameraIsLocked )
@@ -62,8 +62,8 @@ void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float
 	// How much has the mouse moved?
 	float mouseDiff[2] = { float( mousePos.x - holdMousePos.x ), float( mousePos.y - holdMousePos.y ) };
 
-	mouseDiff[0] *= time; 
-	mouseDiff[1] *= time;
+	mouseDiff[0] *= 0.1f; 
+	mouseDiff[1] *= 0.1f;
 
 	D3DXMATRIX yRot;
 	D3DXMATRIX xRot;
@@ -73,7 +73,8 @@ void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float
 	D3DXMatrixRotationX( &xRot, D3DXToRadian( mouseDiff[1] ) );
 
 	// Rotate the camera about the y and x axes
-	matrix = xRot * yRot * matrix;
+	matrix = xRot * matrix;
+	matrix = yRot * matrix;
 
 	NormalizeCameraMatrix();
 }

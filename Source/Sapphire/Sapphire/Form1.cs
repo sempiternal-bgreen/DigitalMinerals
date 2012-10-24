@@ -14,6 +14,7 @@ namespace Sapphire
         public SapphireForm()
         {
             InitializeComponent();
+
         }
 
         private void SapphireFileExit_Click(object sender, EventArgs e)
@@ -34,6 +35,16 @@ namespace Sapphire
             {
                 Program._PostProcessMaximizeThresholdColors();
             }
+        }
+
+        private void SapphireForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PostProcessTab_MouseDown(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }

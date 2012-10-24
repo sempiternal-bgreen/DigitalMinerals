@@ -47,13 +47,13 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.LevelTab = new System.Windows.Forms.TabPage();
             this.EffectTab = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.graphicsPanel2 = new Sapphire.GraphicsPanel(this.components);
             this.FramesPerSecond = new System.Windows.Forms.Label();
             this.FramesPerSecondLabel = new System.Windows.Forms.Label();
             this.graphicsPanel1 = new Sapphire.GraphicsPanel(this.components);
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.SapphireMenu.SuspendLayout();
             this.SapphireControl.SuspendLayout();
             this.RenderTab.SuspendLayout();
@@ -61,8 +61,8 @@
             this.PostProcessTab.SuspendLayout();
             this.PostProcessEffects.SuspendLayout();
             this.EffectTab.SuspendLayout();
-            this.graphicsPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.graphicsPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // SapphireMenu
@@ -162,6 +162,7 @@
             this.PostProcessTab.Size = new System.Drawing.Size(315, 416);
             this.PostProcessTab.TabIndex = 0;
             this.PostProcessTab.Text = "PostProcess";
+            this.PostProcessTab.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PostProcessTab_MouseDown);
             // 
             // PostProcessEffects
             // 
@@ -245,6 +246,36 @@
             this.EffectTab.TabIndex = 2;
             this.EffectTab.Text = "Effect";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(7, 7);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(323, 441);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(315, 415);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(315, 415);
+            this.tabPage3.TabIndex = 1;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // graphicsPanel2
             // 
             this.graphicsPanel2.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -285,36 +316,6 @@
             this.graphicsPanel1.Size = new System.Drawing.Size(640, 480);
             this.graphicsPanel1.TabIndex = 0;
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(7, 7);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(323, 441);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(315, 415);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(192, 74);
-            this.tabPage3.TabIndex = 1;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // SapphireForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,6 +330,7 @@
             this.MainMenuStrip = this.SapphireMenu;
             this.Name = "SapphireForm";
             this.Text = "Sapphire";
+            this.Load += new System.EventHandler(this.SapphireForm_Load);
             this.SapphireMenu.ResumeLayout(false);
             this.SapphireMenu.PerformLayout();
             this.SapphireControl.ResumeLayout(false);
@@ -338,9 +340,9 @@
             this.PostProcessEffects.ResumeLayout(false);
             this.PostProcessEffects.PerformLayout();
             this.EffectTab.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.graphicsPanel2.ResumeLayout(false);
             this.graphicsPanel2.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

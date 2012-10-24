@@ -26,7 +26,7 @@ public:
 	POINT holdMousePos;			// the mouse's position when you lock the camera
 	bool bCameraIsLocked;
 
-	void Initialize( float width, float height );
+	void Initialize( float screenWidth, float screenHeight );
 	void Update( float time, float screenWidth, float screenHeight );
 	void MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float screenHeight );
 	void NormalizeCameraMatrix();

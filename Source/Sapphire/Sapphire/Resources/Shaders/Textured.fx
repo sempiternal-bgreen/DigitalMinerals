@@ -30,12 +30,12 @@ struct VS_OUTPUT
 VS_OUTPUT myVertexShader(VS_INPUT input)
 {
 	VS_OUTPUT output; // what we will output
-   	// compute world vertex position
-	float4 worldloc = float4(input.untransformed_pos,1.0f);
-   	worldloc = mul(worldloc, gWorld); // not needed to be seperate just copy paste
-    // transforming the incoming world vertex into camera, then clip space.
-	output.transformed_pos = mul(worldloc, gViewProjection);
-	// transfer UVs
+   	// TODO: compute world vertex position
+	float4 worldloc = float4( input.untransformed_pos, 1.0f );
+	// TODO: transform the incoming world vertex into camera, then clip space.
+	worldloc = mul(worldloc, gWorld );
+	output.transformed_pos = mul( worldloc, gViewProjection );
+	// TODO: transfer UVs
 	output.uv = input.uv;
 	// send data along to the pixel shader (will be interpolated)
 	return output; 
@@ -43,8 +43,8 @@ VS_OUTPUT myVertexShader(VS_INPUT input)
 // the pixel shader, each rasterized triangle's pixels will run through this 
 float4 myPixelShader(VS_OUTPUT input) : COLOR
 {
-	// return texture color
-	return tex2D(gDiffuseSampler,input.uv);
+	// TODO: return texture color
+	return tex2D( gDiffuseSampler, input.uv );
 }
 // Techniques are read in by the effect framework.
 // They allow one to add variation to how a particular shader might be executed. 
@@ -61,7 +61,7 @@ technique myTechnique
         pixelShader  = compile ps_2_0 myPixelShader();
 		// Setting a few of the many D3D renderstates via the effect framework
 		//ShadeMode = GOURAUD; // smooth color interpolation across triangles
-        //FillMode = SOLID; // no wireframes, no point drawing.
+        //FillMode = POINT; // no wireframes, no point drawing.
         //CullMode = CCW; // cull any clockwise polygons.
     }
 }
