@@ -162,7 +162,6 @@
             this.PostProcessTab.Size = new System.Drawing.Size(315, 416);
             this.PostProcessTab.TabIndex = 0;
             this.PostProcessTab.Text = "PostProcess";
-            this.PostProcessTab.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PostProcessTab_MouseDown);
             // 
             // PostProcessEffects
             // 
@@ -315,6 +314,8 @@
             this.graphicsPanel1.Name = "graphicsPanel1";
             this.graphicsPanel1.Size = new System.Drawing.Size(640, 480);
             this.graphicsPanel1.TabIndex = 0;
+            this.graphicsPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseDown);
+            this.graphicsPanel1.MouseEnter += new System.EventHandler(this.graphicsPanel1_MouseEnter);
             // 
             // SapphireForm
             // 

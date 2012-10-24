@@ -31,26 +31,26 @@ void Camera::Initialize( float screenWidth, float screenHeight )
 
 void Camera::Update( float time, float screenWidth, float screenHeight )
 {
-	GetCursorPos( &mousePos );
+	//GetCursorPos( &mousePos );
 
-	if( GetAsyncKeyState( VK_RBUTTON ) )
-	{
-		//toggle moving the camera around this location
-		bCameraIsLocked = !bCameraIsLocked;
+	//if( GetAsyncKeyState( VK_RBUTTON ) )
+	//{
+	//	//toggle moving the camera around this location
+	//	bCameraIsLocked = !bCameraIsLocked;
 
-		if ( bCameraIsLocked )
-		{
-			GetCursorPos( &holdMousePos );
-		}		
-	}		
+	//	if ( bCameraIsLocked )
+	//	{
+	//		GetCursorPos( &holdMousePos );
+	//	}		
+	//}		
 
-	if ( bCameraIsLocked && MouseHasMoved()  )
-			MouseLook( CameraMatrix, time, screenWidth, screenHeight );
+	//if ( bCameraIsLocked && MouseHasMoved()  )
+	//		MouseLook( CameraMatrix, time, screenWidth, screenHeight );
 
-		if( GetAsyncKeyState( 'W' ) )	{ CameraMatrix._43 -= 10.0f * time; }
-		if( GetAsyncKeyState( 'S' ) )	{ CameraMatrix._43 += 10.0f * time; }
-		if( GetAsyncKeyState( 'A' ) )	{ CameraMatrix._41 += 10.0f * time; }
-		if( GetAsyncKeyState( 'D' ) )	{ CameraMatrix._41 -= 10.0f * time; }
+	//	if( GetAsyncKeyState( 'W' ) )	{ CameraMatrix._43 -= 10.0f * time; }
+	//	if( GetAsyncKeyState( 'S' ) )	{ CameraMatrix._43 += 10.0f * time; }
+	//	if( GetAsyncKeyState( 'A' ) )	{ CameraMatrix._41 += 10.0f * time; }
+	//	if( GetAsyncKeyState( 'D' ) )	{ CameraMatrix._41 -= 10.0f * time; }
 }
 
 void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float screenHeight )
