@@ -3,10 +3,12 @@
 #include "Math\matrix4.h"
 #include "Math\vec3.h"
 
+using namespace std;
+
 void Camera::Initialize( float screenWidth, float screenHeight )
 {
 	Eye.x = 0.0f;
-	Eye.y = 2.0f;
+	Eye.y = 0.0f;
 	Eye.z = -5.0f;
 
 	At.x = 0.0f;
@@ -65,16 +67,18 @@ void Camera::MouseLook( D3DXMATRIX &matrix, float time, float screenWidth, float
 	mouseDiff[0] *= 0.1f; 
 	mouseDiff[1] *= 0.1f;
 
-	D3DXMATRIX yRot;
-	D3DXMATRIX xRot;
+	D3DXMATRIX yRot = matrix;
+	D3DXMATRIX xRot = matrix;
 	D3DXMatrixIdentity(&yRot);
 	D3DXMatrixIdentity(&xRot);
 	D3DXMatrixRotationY( &yRot, D3DXToRadian( mouseDiff[0] ) );
 	D3DXMatrixRotationX( &xRot, D3DXToRadian( mouseDiff[1] ) );
 
 	// Rotate the camera about the y and x axes
-	matrix = xRot * matrix;
-	matrix = yRot * matrix;
+	matrix *= yRot;// * matrix;
+	matrix *= xRot;// * matrix;
+	//D3DXMatrixRotationY( &matrix, D3DXToRadian( mouseDiff[0] ) );
+	//D3DXMatrixRotationX( &matrix, D3DXToRadian( mouseDiff[1] ) );
 
 	NormalizeCameraMatrix();
 }
@@ -85,7 +89,7 @@ void Camera::NormalizeCameraMatrix()
 	D3DXVec3Normalize( &VectorZ, &VectorZ );
 
 	D3DXVECTOR3 VectorX;
-	D3DXVec3Cross( &VectorX, &VectorZ, &Up );
+	D3DXVec3Cross( &VectorX, &Up, &VectorZ );
 
 	D3DXVec3Normalize( &VectorX, &VectorX );
 

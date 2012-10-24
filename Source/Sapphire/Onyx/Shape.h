@@ -11,8 +11,8 @@
 #include <vector>
 
 // defines for the ground plane
-#define GROUND_WIDTH	9
-#define GROUND_HEIGHT	9
+#define GROUND_WIDTH	100
+#define GROUND_HEIGHT	100
 #define CELL_WIDTH		1.0f
 #define CELL_HEIGHT		1.0f
 

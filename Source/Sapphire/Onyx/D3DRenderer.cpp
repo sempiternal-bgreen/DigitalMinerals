@@ -52,7 +52,7 @@ void RenderD3DRender()
 {
 	if( NULL == d3d.d3dDevice ) { return; }
 
-	d3d.d3dDevice->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 0,0,0 ), 1.0f, 0 );
+	d3d.d3dDevice->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 135, 206, 250 ), 1.0f, 0 );
 
 	if( PostProcess::GetInstance()->m_bPostProcess )	{ PostProcess::GetInstance()->BeginPostProcess( d3d.d3dDevice ); }
 	d3d.d3dDevice->BeginScene();

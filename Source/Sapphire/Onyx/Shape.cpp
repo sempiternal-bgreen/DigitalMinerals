@@ -104,6 +104,8 @@ void Shape::ShutDownShape()
 
 void Shape::RenderCube( IDirect3DDevice9* device, D3DXMATRIX camera, D3DXMATRIX projection )
 {
+	D3DXMATRIX camInv;
+	D3DXMatrixInverse( &camInv, 0, &camera );
 	unsigned int passes3(0);
 	HRESULT hr = textureEffect->Begin(&passes3, 0);
 
@@ -135,7 +137,7 @@ void Shape::InitGround( IDirect3DDevice9* device )
 	GenTriGrid(GROUND_WIDTH, GROUND_HEIGHT, CELL_WIDTH, CELL_HEIGHT, D3DXVECTOR3(0.0f, 0.0f, 0.0f), verts, indices);
 	// Save vertex count and triangle count for DrawIndexedPrimitive arguments.
 	mNumGridVertices  = GROUND_WIDTH * GROUND_HEIGHT;
-	mNumGridTriangles = 8*8*2;
+	mNumGridTriangles = (GROUND_WIDTH - 1) * (GROUND_HEIGHT - 1) * 2;
 	// Obtain a pointer to a new vertex buffer.
 	device->CreateVertexBuffer(mNumGridVertices * sizeof(VERTUV), D3DUSAGE_WRITEONLY, 0, D3DPOOL_MANAGED, &groundbuff, 0);
 	// Now lock it to obtain a pointer to its internal data, and write the
@@ -147,9 +149,9 @@ void Shape::InitGround( IDirect3DDevice9* device )
 	{
 		for(int j = 0; j < GROUND_HEIGHT; ++j)
 		{
-			DWORD index = i * 9 + j;
+			DWORD index = i * ((GROUND_WIDTH + GROUND_HEIGHT)/2) + j;
 			v[index].pos.x    = verts[index].x;
-			v[index].pos.y    = rand()%25 * 0.01f;
+			v[index].pos.y    = rand()%25 * 0.025f;
 			v[index].pos.z    = verts[index].z;
 			v[index].uv = D3DXVECTOR2((float)j, (float)i ) * texScale;
 		}
@@ -189,8 +191,7 @@ void Shape::RenderGround(IDirect3DDevice9* device, D3DXMATRIX camera, D3DXMATRIX
 	groundEffect->End();
 }
 
-void GenTriGrid( int numVertRows, int numVertCols,float dx, float dz,	const D3DXVECTOR3& center,
-std::vector<D3DXVECTOR3>& verts, std::vector<DWORD>& indices )
+void GenTriGrid( int numVertRows, int numVertCols,float dx, float dz, const D3DXVECTOR3& center, std::vector<D3DXVECTOR3>& verts, std::vector<DWORD>& indices )
 {
 	int numVertices = numVertRows*numVertCols;
 	int numCellRows = numVertRows-1;

@@ -111,7 +111,7 @@ void PostProcess::BeginPostProcess( IDirect3DDevice9 *device )
 	renderTarget->GetSurfaceLevel(0,&output);
 	device->SetRenderTarget(0,output);
 	// CLEAR RENDERTARGET
-	device->Clear( 0, 0, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 ); // MODIFY FOR ZBUFFER
+	device->Clear( 0, 0, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 135, 206, 250 ), 1.0f, 0 ); // MODIFY FOR ZBUFFER
 
 }
 void PostProcess::EndPostProcess( IDirect3DDevice9 *device )
@@ -123,7 +123,7 @@ void PostProcess::EndPostProcess( IDirect3DDevice9 *device )
 	current->Release();
 	output->Release();
 	// CLEAR BACKBUFFER
-	device->Clear( 0, 0, D3DCLEAR_TARGET , D3DCOLOR_XRGB(0,255,0), 1.0f, 0);	// MODIFY FOR ZBUFFER
+	device->Clear( 0, 0, D3DCLEAR_TARGET , D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0);	// MODIFY FOR ZBUFFER
 
 	// SET THE TECHNIQUE TO THE PROPER EFFECT
 	postEffect->SetTechnique( techs[index] );
