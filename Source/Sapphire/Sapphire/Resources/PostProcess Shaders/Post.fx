@@ -215,8 +215,7 @@ float4 TronLines(VS_OUTPUT input) : COLOR
 	// using cos and the UV coordinates, create the line effect
 	input.uv.y -= gTime * 0.5f;
 	// tint the cos UV effect with the passed in color values
-	//if (texCol.r >= 0.6f && texCol.g <= 0.5f && texCol.b >= 0.6f)
-	if( texCol.r >= 0.9f || texCol.g >= 0.9f || texCol.b >= 0.9f )
+	if( texCol.r >= 0.9f && texCol.g >= 0.9f && texCol.b >= 0.9f )
 	{
 		texCol.r = cos(input.uv.y * 10) * gRed;
 		texCol.g = cos(input.uv.y * 10) * gGreen;

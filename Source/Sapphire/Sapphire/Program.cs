@@ -39,6 +39,9 @@ namespace Sapphire
         [DllImport("Onyx")]
         public static extern void _PostProcessMaximizeThresholdColors();
 
+        [DllImport("Onyx")]
+        public static extern void _SetCameraToggle(bool set);
+
         [STAThread]
         static void Main()
         {
@@ -53,7 +56,7 @@ namespace Sapphire
 
             // Set Our Post Process Combo Box to "No Effect"
             Form.PostProcessComboBox.SelectedIndex = 0;
-
+            _TogglePostProcess(Form.PostProcessCheckBox.Checked);
             // Loop While We Have a Form
             while (Form.Created)
             {

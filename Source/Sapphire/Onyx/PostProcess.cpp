@@ -15,7 +15,7 @@ PostProcess* PostProcess::GetInstance(void)
 
 void PostProcess::Initialize( IDirect3DDevice9 *device )
 {
-	m_bPostProcess = true;
+	//m_bPostProcess = true;
 
 	// GRAB THE ACTUAL DISPLAY WIDTH
 	IDirect3DSurface9* bBuffer = 0;
@@ -27,7 +27,7 @@ void PostProcess::Initialize( IDirect3DDevice9 *device )
 	D3DXCreateEffectFromFile( device, L"../../Resources/PostProcess Shaders/Post.fx", 0, 0, 0, 0, &postEffect, 0 );
 
 	// MAKE THE RENDER TARGET TEXTURE
-	D3DXCreateTexture( device, 640, 480, 1, D3DUSAGE_RENDERTARGET, D3DFMT_R8G8B8, D3DPOOL_DEFAULT, &renderTarget ); 
+	D3DXCreateTexture( device, 640, 480, 0, D3DUSAGE_RENDERTARGET, D3DFMT_R8G8B8, D3DPOOL_DEFAULT, &renderTarget ); 
 
 	// CREATE SCREEN SPACE QUAD WITH HALF-TEXEL OFFSET
 	void *mem = 0;
@@ -38,10 +38,10 @@ void PostProcess::Initialize( IDirect3DDevice9 *device )
 	};
 	QUAD quadverts[] =
 	{
-		{ D3DXVECTOR3( -1.0f, -1.0f, 0.0f ), D3DXVECTOR2( 0 , 1) },
-		{ D3DXVECTOR3( -1.0f,  1.0f, 0.0f ), D3DXVECTOR2( 0 , 0) },
-		{ D3DXVECTOR3(  1.0f,  1.0f, 0.0f ), D3DXVECTOR2( 1 , 0) },
-		{ D3DXVECTOR3(  1.0f, -1.0f, 0.0f ), D3DXVECTOR2( 1 , 1) }
+		{ D3DXVECTOR3( -1.0f, -1.0f, 0.0f ), D3DXVECTOR2( 0.0f , 1.0f) },
+		{ D3DXVECTOR3( -1.0f,  1.0f, 0.0f ), D3DXVECTOR2( 0.0f , 0.0f) },
+		{ D3DXVECTOR3(  1.0f,  1.0f, 0.0f ), D3DXVECTOR2( 1.0f , 0.0f) },
+		{ D3DXVECTOR3(  1.0f, -1.0f, 0.0f ), D3DXVECTOR2( 1.0f , 1.0f) }
 	};
 	// INDICIES FOR QUAD
 	short quadindicies[] =

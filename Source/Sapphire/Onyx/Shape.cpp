@@ -106,6 +106,7 @@ void Shape::RenderCube( IDirect3DDevice9* device, D3DXMATRIX camera, D3DXMATRIX 
 {
 	D3DXMATRIX camInv;
 	D3DXMatrixInverse( &camInv, 0, &camera );
+	
 	unsigned int passes3(0);
 	HRESULT hr = textureEffect->Begin(&passes3, 0);
 
@@ -114,7 +115,7 @@ void Shape::RenderCube( IDirect3DDevice9* device, D3DXMATRIX camera, D3DXMATRIX 
 		textureEffect->BeginPass(i);
 
 		textureEffect->SetMatrix("gWorld", &cube );
-		textureEffect->SetMatrix("gViewProjection", &(camera * projection) );
+		textureEffect->SetMatrix("gViewProjection", &(camInv * projection) );
 		textureEffect->SetTexture("gDiffuseTexture", metalTexture );
 		textureEffect->CommitChanges();
 		// render data
@@ -171,13 +172,17 @@ void Shape::InitGround( IDirect3DDevice9* device )
 void Shape::RenderGround(IDirect3DDevice9* device, D3DXMATRIX camera, D3DXMATRIX projection )
 {
 	// TODO: render ground with textured shader
+
+	D3DXMATRIX camInv;
+	D3DXMatrixInverse( &camInv, 0, &camera );
+
 	unsigned passes(0);
 	groundEffect->Begin( &passes, 0 );
 	for( unsigned i(0); i < passes; ++i )
 	{
 		groundEffect->BeginPass(i);
 		groundEffect->SetMatrix( "gWorld", &(ground) );
-		groundEffect->SetMatrix( "gViewProjection", &(camera * projection));
+		groundEffect->SetMatrix( "gViewProjection", &(camInv * projection));
 		groundEffect->SetTexture( "gDiffuseTexture", groundTexture );
 		groundEffect->CommitChanges();
 

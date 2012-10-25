@@ -10,5 +10,6 @@ void ShutDownD3DRender();
 void ResetD3DRender();
 
 void ToggleVSync( bool toggle );
+void SetCameraToggle( bool toggle );
 
 #endif

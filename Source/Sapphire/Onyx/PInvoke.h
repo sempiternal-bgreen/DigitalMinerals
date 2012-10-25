@@ -18,8 +18,7 @@ __declspec(dllexport) void CALLBACK _TogglePostProcess( bool set );
 __declspec(dllexport) void CALLBACK _SetPostProcessEffect( int set );
 __declspec(dllexport) void CALLBACK _PostProcessMaximizeThresholdColors();
 
-__declspec(dllexport) void CALLBACK _SetScreenWidth( float width );
-__declspec(dllexport) void CALLBACK _SetScreenHeight( float height );
+__declspec(dllexport) void CALLBACK _SetCameraToggle( bool set );
 }
 
 #endif

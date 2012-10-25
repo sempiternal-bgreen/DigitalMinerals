@@ -13,6 +13,8 @@ D3D		d3d;
 Camera  camera;
 Shape	shape;
 
+bool	currentlyDrawing = true;
+
 HRESULT InitializeD3DRender( HWND hWnd, float screenWidth, float screenHeight )
 {
 	// STARTUP DEBUG CONSOLE
@@ -55,12 +57,17 @@ void RenderD3DRender()
 	d3d.d3dDevice->Clear( 0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 135, 206, 250 ), 1.0f, 0 );
 
 	if( PostProcess::GetInstance()->m_bPostProcess )	{ PostProcess::GetInstance()->BeginPostProcess( d3d.d3dDevice ); }
-	d3d.d3dDevice->BeginScene();
 
-	shape.RenderShape( d3d.d3dDevice, camera.CameraMatrix, camera.ProjectionMatrix );
+	if( currentlyDrawing )
+	{
+		d3d.d3dDevice->BeginScene();
 
-	d3d.d3dDevice->EndScene();
-	if( PostProcess::GetInstance()->m_bPostProcess )	{ PostProcess::GetInstance()->EndPostProcess( d3d.d3dDevice ); }
+		shape.RenderShape( d3d.d3dDevice, camera.CameraViewMatrix, camera.ProjectionMatrix );
+
+		d3d.d3dDevice->EndScene();
+		if( PostProcess::GetInstance()->m_bPostProcess )	{ PostProcess::GetInstance()->EndPostProcess( d3d.d3dDevice ); }
+		currentlyDrawing = false;
+	}
 
 	d3d.d3dDevice->Present( 0, 0, 0, 0 );
 }
@@ -79,4 +86,8 @@ void ToggleVSync( bool toggle )
 {
 	d3d.m_bVSync = toggle;
 	ResetD3DRender();
+}
+void SetCameraToggle( bool toggle )
+{
+	camera.bCameraIsLocked = toggle;
 }

@@ -50,10 +50,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.graphicsPanel3 = new Sapphire.GraphicsPanel(this.components);
+            this.graphicsPanel1 = new Sapphire.GraphicsPanel(this.components);
             this.graphicsPanel2 = new Sapphire.GraphicsPanel(this.components);
             this.FramesPerSecond = new System.Windows.Forms.Label();
             this.FramesPerSecondLabel = new System.Windows.Forms.Label();
-            this.graphicsPanel1 = new Sapphire.GraphicsPanel(this.components);
+            this.VSyncCheckBox = new System.Windows.Forms.CheckBox();
             this.SapphireMenu.SuspendLayout();
             this.SapphireControl.SuspendLayout();
             this.RenderTab.SuspendLayout();
@@ -62,6 +64,7 @@
             this.PostProcessEffects.SuspendLayout();
             this.EffectTab.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.graphicsPanel3.SuspendLayout();
             this.graphicsPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -275,9 +278,31 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // graphicsPanel3
+            // 
+            this.graphicsPanel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.graphicsPanel3.Controls.Add(this.graphicsPanel1);
+            this.graphicsPanel3.Location = new System.Drawing.Point(5, 31);
+            this.graphicsPanel3.Name = "graphicsPanel3";
+            this.graphicsPanel3.Size = new System.Drawing.Size(648, 486);
+            this.graphicsPanel3.TabIndex = 4;
+            // 
+            // graphicsPanel1
+            // 
+            this.graphicsPanel1.BackColor = System.Drawing.Color.Black;
+            this.graphicsPanel1.Location = new System.Drawing.Point(3, 3);
+            this.graphicsPanel1.Name = "graphicsPanel1";
+            this.graphicsPanel1.Size = new System.Drawing.Size(640, 480);
+            this.graphicsPanel1.TabIndex = 0;
+            this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            this.graphicsPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseDown);
+            this.graphicsPanel1.MouseEnter += new System.EventHandler(this.graphicsPanel1_MouseEnter);
+            this.graphicsPanel1.MouseLeave += new System.EventHandler(this.graphicsPanel1_MouseLeave);
+            // 
             // graphicsPanel2
             // 
             this.graphicsPanel2.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.graphicsPanel2.Controls.Add(this.VSyncCheckBox);
             this.graphicsPanel2.Controls.Add(this.FramesPerSecond);
             this.graphicsPanel2.Controls.Add(this.FramesPerSecondLabel);
             this.graphicsPanel2.Location = new System.Drawing.Point(0, 531);
@@ -307,15 +332,18 @@
             this.FramesPerSecondLabel.TabIndex = 0;
             this.FramesPerSecondLabel.Text = "FPS:";
             // 
-            // graphicsPanel1
+            // VSyncCheckBox
             // 
-            this.graphicsPanel1.BackColor = System.Drawing.Color.Black;
-            this.graphicsPanel1.Location = new System.Drawing.Point(12, 37);
-            this.graphicsPanel1.Name = "graphicsPanel1";
-            this.graphicsPanel1.Size = new System.Drawing.Size(640, 480);
-            this.graphicsPanel1.TabIndex = 0;
-            this.graphicsPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseDown);
-            this.graphicsPanel1.MouseEnter += new System.EventHandler(this.graphicsPanel1_MouseEnter);
+            this.VSyncCheckBox.AutoSize = true;
+            this.VSyncCheckBox.Checked = true;
+            this.VSyncCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.VSyncCheckBox.Location = new System.Drawing.Point(913, 4);
+            this.VSyncCheckBox.Name = "VSyncCheckBox";
+            this.VSyncCheckBox.Size = new System.Drawing.Size(68, 17);
+            this.VSyncCheckBox.TabIndex = 2;
+            this.VSyncCheckBox.Text = "V_SYNC";
+            this.VSyncCheckBox.UseVisualStyleBackColor = true;
+            this.VSyncCheckBox.CheckedChanged += new System.EventHandler(this.VSyncCheckBox_CheckedChanged);
             // 
             // SapphireForm
             // 
@@ -323,9 +351,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1015, 555);
+            this.Controls.Add(this.graphicsPanel3);
             this.Controls.Add(this.SapphireControl);
             this.Controls.Add(this.graphicsPanel2);
-            this.Controls.Add(this.graphicsPanel1);
             this.Controls.Add(this.SapphireMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.SapphireMenu;
@@ -342,6 +370,7 @@
             this.PostProcessEffects.PerformLayout();
             this.EffectTab.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.graphicsPanel3.ResumeLayout(false);
             this.graphicsPanel2.ResumeLayout(false);
             this.graphicsPanel2.PerformLayout();
             this.ResumeLayout(false);
@@ -368,13 +397,15 @@
         public System.Windows.Forms.Label FramesPerSecond;
         private System.Windows.Forms.TabControl RenderSubControl;
         private System.Windows.Forms.TabPage PostProcessTab;
-        private System.Windows.Forms.CheckBox PostProcessCheckBox;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox PostProcessEffects;
         public System.Windows.Forms.ComboBox PostProcessComboBox;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage3;
+        private GraphicsPanel graphicsPanel3;
+        public System.Windows.Forms.CheckBox PostProcessCheckBox;
+        private System.Windows.Forms.CheckBox VSyncCheckBox;
 
     }
 }

@@ -7,11 +7,13 @@
 #pragma comment( lib, "d3d9.lib" )
 #pragma comment( lib, "d3dx9.lib" )
 
+
 class Camera
 {
 public:
-	D3DXMATRIX	CameraMatrix;
+	D3DXMATRIX	CameraViewMatrix;
 	D3DXMATRIX	ProjectionMatrix;
+	D3DXMATRIX  CameraInverseMatrix;
 
 	D3DXVECTOR3 Eye;
 	D3DXVECTOR3 At;

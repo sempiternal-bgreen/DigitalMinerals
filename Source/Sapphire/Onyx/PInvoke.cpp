@@ -1,6 +1,5 @@
 #include "PInvoke.h"
 #include "Timer.h"
-#include "D3DRenderer.h"
 #include "PostProcess.h"
 
 __declspec(dllexport) void CALLBACK _InitializeD3D( HWND handle, float screenWidth, float screenHeight )
@@ -46,11 +45,7 @@ __declspec(dllexport) void CALLBACK _PostProcessMaximizeThresholdColors()
 	PostProcess::GetInstance()->MaximizeThresholdColors();
 }
 
-__declspec(dllexport) void CALLBACK _SetScreenWidth( float width )
+__declspec(dllexport) void CALLBACK _SetCameraToggle( bool set )
 {
-	//SCREEN_WIDTH = width;
-}
-__declspec(dllexport) void CALLBACK _SetScreenHeight( float height )
-{
-	//SCREEN_HEIGHT = height;
+	SetCameraToggle( set );
 }

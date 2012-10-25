@@ -12,7 +12,7 @@ namespace Sapphire
     public partial class SapphireForm : Form
     {
         public Point initialMouse;
-
+        public bool toggleCamera = false;
         public SapphireForm()
         {
             InitializeComponent();
@@ -41,12 +41,13 @@ namespace Sapphire
 
         private void SapphireForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void graphicsPanel1_MouseEnter(object sender, EventArgs e)
         {
             graphicsPanel1.Focus();
+            graphicsPanel3.BackColor = Color.MediumSlateBlue;
         }
 
         private void graphicsPanel1_MouseDown(object sender, MouseEventArgs e)
@@ -56,11 +57,37 @@ namespace Sapphire
                 case MouseButtons.Right:
                     {
                         // Set initial point for mouse move
+                        toggleCamera = !toggleCamera;
+                        Program._SetCameraToggle(toggleCamera);
                         initialMouse = e.Location;
-
+                        if (toggleCamera)
+                        {
+                            graphicsPanel3.BackColor = Color.Red;
+                        }
+                        else
+                        {
+                            graphicsPanel3.BackColor = SystemColors.ControlLight;
+                        }
                         break;
                     }
             }
+        }
+
+        private void graphicsPanel1_MouseLeave(object sender, EventArgs e)
+        {
+            graphicsPanel3.BackColor = SystemColors.ControlLight;
+            Program._SetCameraToggle(false);
+        }
+
+        private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void VSyncCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Program._ToggleVSync(VSyncCheckBox.Checked);
+            graphicsPanel1.Invalidate();
         }
 
     }
